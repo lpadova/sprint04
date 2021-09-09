@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,12 +21,13 @@ import java.util.List;
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
+    @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer id;
 
     @Column(name = "nm_usuario")
+    @NotBlank(message = "Campo nome obrigatório")
     private String nome;
 
     @Email(message = "campo email deve conter um email válido")
@@ -39,16 +41,19 @@ public class Usuario implements Serializable {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_nascimento")
+    @NotNull(message = "Campo dataNascimento obrigatório")
     private Calendar dataNascimento;
 
     @Column(name = "nr_rg")
     private String rg;
 
-    @Column(name = "nr_cpf")
+    @Column(name = "nr_cpf", unique = true)
+    @NotBlank(message = "Campo CPF obrigatório")
+    @Size(min = 11, max = 13)
     private String cpf;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ds_genero")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
     private Genero genero;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)

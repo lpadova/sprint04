@@ -1,6 +1,27 @@
 package br.com.fiap.challenge03.model;
 
-public enum Genero {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    MASCULINO, FEMININO, OUTROS
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Genero implements Serializable {
+    private static final long SerialVersionUID = 1L;
+
+    @Id
+    @Column(name = "id_genero", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "ds_genero")
+    @NotBlank(message = "Campo descrição do Genero obrigatório")
+    private String descricao;
+
 }
