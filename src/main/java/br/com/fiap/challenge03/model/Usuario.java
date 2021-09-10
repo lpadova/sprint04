@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -57,26 +58,17 @@ public class Usuario implements Serializable {
     private Genero genero;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Estado> estados;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<InformacaoUsuario> infoUsers;
 
-    public void addEstados(Estado estado) {
-        if (estados == null)
-            estados = new ArrayList<>();
-
-        estados.add(estado);
-
-        estado.setUsuario(this);
-    }
-
-    public void addInformacaoUsuario(InformacaoUsuario informacaoUsuario) {
-        if (infoUsers == null)
-            infoUsers = new ArrayList<>();
-
-        infoUsers.add(informacaoUsuario);
-
-        informacaoUsuario.setUsuario(this);
+    public Usuario(Integer id, String nome, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 }

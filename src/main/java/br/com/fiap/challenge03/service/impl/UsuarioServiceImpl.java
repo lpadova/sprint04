@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.service.impl;
 
+import br.com.fiap.challenge03.dto.UsuarioDTO;
 import br.com.fiap.challenge03.exception.DataIntegretyException;
 import br.com.fiap.challenge03.exception.ObjectNotFoundException;
 import br.com.fiap.challenge03.model.Usuario;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -23,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (nome == null)
             return usuarioRepository.findAll(pageable);
 
-        return usuarioRepository.findAllByNomeContains(nome, pageable);
+        return usuarioRepository.findByNomeContains(nome, pageable);
     }
 
     @Override
@@ -31,26 +34,40 @@ public class UsuarioServiceImpl implements UsuarioService {
         try {
             Usuario user = usuarioRepository.findByCpf(usuario.getCpf());
 
-            if(user != null)
+            if (user != null)
                 if (usuario.getCpf().equals(user.getCpf())) {
                     throw new DataIntegretyException("Usuário já existente no banco de dados");
                 }
 
             usuarioRepository.save(usuario);
-        } catch (Exception e){
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     @Override
-    public Page<Usuario> findOne(String cpf, Pageable pageable) {
-        Page<Usuario> usuario = null;
-        try {
-            usuario = usuarioRepository.findUsuariosByCpf(cpf, pageable);
-        } catch (ObjectNotFoundException e) {
-            throw new ObjectNotFoundException("Usuario não encontrado", e.getCause());
-        }
+    public Optional<Usuario> findById(Integer id) {
+        return usuarioRepository.findById(id);
+    }
 
-        return usuario;
+    @Override
+    public Usuario update(Integer id, Usuario usuario) {
+        Optional<Usuario> userOptional = usuarioRepository.findById(id);
+
+        Usuario user = userOptional.get();
+
+        user.setNome(usuario.getNome());
+        user.setEmail(usuario.getEmail());
+        user.setSenha(usuario.getSenha());
+
+        usuarioRepository.save(user);
+
+        return user;
+    }
+
+    public Usuario fromDTO(UsuarioDTO usuarioDTO) {
+        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(),
+                usuarioDTO.getEmail(), usuarioDTO.getSenha());
     }
 }

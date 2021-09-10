@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class InformacaoUsuario implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @JsonBackReference
     private Usuario usuario;
 
     @CreationTimestamp
@@ -42,4 +44,8 @@ public class InformacaoUsuario implements Serializable {
     @Column(name = "nr_imc")
     private double imc;
 
+    public double getImc() {
+        this.imc = this.peso / (this.altura * this.altura);
+        return imc;
+    }
 }

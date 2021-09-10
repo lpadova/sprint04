@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.controller;
 
+import br.com.fiap.challenge03.dto.UsuarioDTO;
 import br.com.fiap.challenge03.model.Usuario;
 import br.com.fiap.challenge03.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -39,5 +41,21 @@ public class UsuarioController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(usuario);
+    }
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Usuario> findOne(@PathVariable Integer id) {
+        return ResponseEntity.of(usuarioService.findById(id));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Usuario> update(@PathVariable Integer id,
+                                       @RequestBody @Valid UsuarioDTO userDTO) {
+
+        Usuario usuario = usuarioService.fromDTO(userDTO);
+        usuario.setId(id);
+        usuario = usuarioService.update(id,usuario);
+
+        return ResponseEntity.ok(usuario);
     }
 }

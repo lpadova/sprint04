@@ -33,10 +33,5 @@ public class ValidationControllerAdvice {
         return list;
     }
 
-
-//    @ExceptionHandler(Exception.class)
-//    public void handle() {
-//        System.out.println("-------------------um erro aconteceu");
-//    }
 }
 

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 
-    Page<Usuario> findAllByNomeContains(String nome, Pageable pageable);
+    Page<Usuario> findByNomeContains(String nome, Pageable pageable);
 
     Page<Usuario> findUsuariosByCpf(String cpf, Pageable pageable);
 

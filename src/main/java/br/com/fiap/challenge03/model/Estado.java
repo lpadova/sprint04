@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,9 @@ public class Estado implements Serializable {
     @Column(name = "nr_atualizacao", nullable = false)
     private Integer numeroAtualizacao;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @JsonBackReference
     private Usuario usuario;
 
     @CreationTimestamp
