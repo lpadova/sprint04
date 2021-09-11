@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.service.impl;
 
+import br.com.fiap.challenge03.dto.InformacaoUsuarioDTO;
 import br.com.fiap.challenge03.dto.UsuarioDTO;
 import br.com.fiap.challenge03.exception.DataIntegretyException;
 import br.com.fiap.challenge03.exception.ObjectNotFoundException;
@@ -53,7 +54,7 @@ public class InformacaoUsuarioServiceImpl implements InformacaoUsuarioService {
     }
 
     @Override
-    public InformacaoUsuario fromDTO(InformacaoUsuario dto) {
+    public InformacaoUsuario fromDTO(InformacaoUsuarioDTO dto) {
         return new InformacaoUsuario(dto.getNumeroAtualizacao(), dto.getDataAtualizacao(), dto.getUsuario(),
                 dto.getAltura(), dto.getPeso());
     }

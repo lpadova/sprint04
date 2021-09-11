@@ -1,6 +1,5 @@
 package br.com.fiap.challenge03.service;
 
-import br.com.fiap.challenge03.dto.EstadoDTO;
 import br.com.fiap.challenge03.model.Estado;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

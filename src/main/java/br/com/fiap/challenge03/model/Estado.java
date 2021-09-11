@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -24,7 +25,7 @@ public class Estado implements Serializable {
     private Integer id;
 
     @Column(name = "nr_atualizacao", nullable = false)
-    @NotBlank(message = "Campo nr_atualização obrigatório")
+    @NotNull(message = "Campo nr_atualização obrigatório")
     private Integer numeroAtualizacao;
 
     @ManyToOne()
@@ -34,7 +35,7 @@ public class Estado implements Serializable {
 
     @CreationTimestamp
     @Column(name = "dt_atualizacao", nullable = false)
-    @NotBlank(message = "Campo dt_atualizacao é obrigatório")
+    @NotNull(message = "Campo dt_atualizacao é obrigatório")
     private Calendar dataAtualizacao;
 
     @Column(name = "md_pressao_arterial", length = 10)

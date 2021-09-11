@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @ResponseBody
 @RequestMapping("/api/infoUser")
-public class InformacaoUsuariController {
+public class InformacaoUsuarioController {
 
     @Autowired
     private InformacaoUsuarioService service;
@@ -47,7 +47,7 @@ public class InformacaoUsuariController {
         return ResponseEntity.created(uri).body(infoUsers);
     }
 
-    @PostMapping("{id}")
+    @PutMapping("{id}")
     public ResponseEntity<InformacaoUsuario> update(@PathVariable Integer id,
                                                     @RequestBody @Valid InformacaoUsuarioDTO usuarioDTO) {
 
