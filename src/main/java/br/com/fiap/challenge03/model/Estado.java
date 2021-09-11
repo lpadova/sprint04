@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -23,6 +24,7 @@ public class Estado implements Serializable {
     private Integer id;
 
     @Column(name = "nr_atualizacao", nullable = false)
+    @NotBlank(message = "Campo nr_atualização obrigatório")
     private Integer numeroAtualizacao;
 
     @ManyToOne()
@@ -32,12 +34,15 @@ public class Estado implements Serializable {
 
     @CreationTimestamp
     @Column(name = "dt_atualizacao", nullable = false)
+    @NotBlank(message = "Campo dt_atualizacao é obrigatório")
     private Calendar dataAtualizacao;
 
     @Column(name = "md_pressao_arterial", length = 10)
+    @NotBlank(message = "O campo md_pressao_arterial é obrigatório")
     private String pressaoArterial;
 
-    @Column(name = "md_monitoramento_cardiato", length = 10)
+    @Column(name = "md_monitoramento_cardiaco", length = 10)
+    @NotBlank(message = "O campo md_monitoramento_cardiaco é obrigatório")
     private String monitoramentoCardiaco;
 
     @Column(name = "md_temperatura", length = 10)

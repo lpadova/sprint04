@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -24,6 +25,7 @@ public class InformacaoUsuario implements Serializable {
     private Integer id;
 
     @Column(name = "nr_atualizacao", nullable = false)
+    @NotBlank(message = "O campo nr_atualizacao é obrigatório")
     private Integer numeroAtualizacao;
 
     @ManyToOne
@@ -33,25 +35,19 @@ public class InformacaoUsuario implements Serializable {
 
     @CreationTimestamp
     @Column(name = "dt_atualizacao")
+    @NotBlank(message = "O campo dt_atualizacao é obrigatório")
     private Calendar dataAtualizacao;
 
     @Column(name = "nr_altura")
+    @NotBlank(message = "O campo nr_altura é obrigatório")
     private double altura;
 
     @Column(name = "nr_peso")
+    @NotBlank(message = "O campo nr_peso é obrigatório")
     private double peso;
 
     @Column(name = "nr_imc")
     private double imc;
-
-    public InformacaoUsuario(Integer numeroAtualizacao, Calendar dataAtualizacao,
-                             Usuario usuario, double altura, double peso) {
-        this.numeroAtualizacao = numeroAtualizacao;
-        this.dataAtualizacao = dataAtualizacao;
-        this.usuario = usuario;
-        this.altura = altura;
-        this.peso = peso;
-    }
 
     public double getImc() {
         this.imc = this.peso / (this.altura * this.altura);

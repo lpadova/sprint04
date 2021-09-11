@@ -31,11 +31,12 @@ public class Usuario implements Serializable {
     private String nome;
 
     @Email(message = "campo email deve conter um email válido")
-    @NotBlank
+    @NotBlank(message = "Campo email é obrigatório")
     @Column(name = "ds_email", nullable = false)
     private String email;
 
     @Size(min = 8, message = "Campo senha deve conter pelo menos 8 Caracteres")
+    @NotBlank(message = "Campo senha é obrigatório")
     @Column(name = "ds_senha", nullable = false)
     private String senha;
 
