@@ -16,7 +16,4 @@ public interface EstadoService {
 
     Page<Estado> findAll(Pageable pageable);
 
-    Estado update(Integer id, Estado estado);
-
-    Estado fromDTO(EstadoDTO estadoDTO);
 }

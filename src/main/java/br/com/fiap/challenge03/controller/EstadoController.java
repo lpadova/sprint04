@@ -47,16 +47,5 @@ public class EstadoController {
         return estadoService.findAll(pageable);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Estado> update(@PathVariable Integer id,
-                                          @RequestBody @Valid EstadoDTO estadoDTO) {
-
-        Estado estado = estadoService.fromDTO(estadoDTO);
-        estado.setId(id);
-        estado = estadoService.update(id, estado);
-
-        return ResponseEntity.ok(estado);
-    }
-
 
 }

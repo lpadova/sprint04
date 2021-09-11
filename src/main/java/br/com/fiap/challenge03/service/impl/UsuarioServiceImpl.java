@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 if (usuario.getCpf().equals(user.getCpf())) {
                     throw new DataIntegretyException("Usuário já existente no banco de dados");
                 }
-
+            usuario.getGenero().setUsuario(usuario);
             usuarioRepository.save(usuario);
 
         } catch (Exception e) {

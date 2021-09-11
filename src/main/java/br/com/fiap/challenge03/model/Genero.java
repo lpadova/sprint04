@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,10 @@ public class Genero implements Serializable {
     @Column(name = "ds_genero")
     @NotBlank(message = "Campo descrição do Genero obrigatório")
     private String descricao;
+
+    @OneToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @JsonBackReference
+    private Usuario usuario;
 
 }

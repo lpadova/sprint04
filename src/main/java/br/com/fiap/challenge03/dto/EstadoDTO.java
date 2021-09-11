@@ -14,7 +14,6 @@ public class EstadoDTO {
 
     private Integer id;
 
-    @NotBlank(message = "Campo dataAtualizacao é obrigatório")
     private Calendar dataAtualizacao;
 
     @NotBlank(message = "Campo pressaoArterial é obrigatório")

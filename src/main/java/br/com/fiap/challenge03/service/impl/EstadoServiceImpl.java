@@ -55,26 +55,4 @@ public class EstadoServiceImpl implements EstadoService {
         return estadoRepository.findAll(pageable);
     }
 
-    @Override
-    public Estado update(Integer id, Estado estado) {
-        Optional<Estado> optionalEstado = findById(id);
-
-        Estado e = optionalEstado.get();
-
-        e.setDataAtualizacao(estado.getDataAtualizacao());
-        e.setMonitoramentoCardiaco(estado.getMonitoramentoCardiaco());
-        e.setTemperatura(estado.getTemperatura());
-        e.setPressaoArterial(estado.getPressaoArterial());
-
-        estadoRepository.save(estado);
-
-        return e;
-    }
-
-    @Override
-    public Estado fromDTO(EstadoDTO estadoDTO) {
-        return new Estado(estadoDTO.getId(), estadoDTO.getDataAtualizacao(),
-                estadoDTO.getTemperatura(), estadoDTO.getMonitoramentoCardiaco(),
-                estadoDTO.getPressaoArterial());
-    }
 }
