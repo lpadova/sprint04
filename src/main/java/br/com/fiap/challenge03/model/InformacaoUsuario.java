@@ -44,6 +44,15 @@ public class InformacaoUsuario implements Serializable {
     @Column(name = "nr_imc")
     private double imc;
 
+    public InformacaoUsuario(Integer numeroAtualizacao, Calendar dataAtualizacao,
+                             Usuario usuario, double altura, double peso) {
+        this.numeroAtualizacao = numeroAtualizacao;
+        this.dataAtualizacao = dataAtualizacao;
+        this.usuario = usuario;
+        this.altura = altura;
+        this.peso = peso;
+    }
+
     public double getImc() {
         this.imc = this.peso / (this.altura * this.altura);
         return imc;

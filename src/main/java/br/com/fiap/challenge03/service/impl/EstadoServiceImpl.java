@@ -1,6 +1,5 @@
 package br.com.fiap.challenge03.service.impl;
 
-import br.com.fiap.challenge03.dto.EstadoDTO;
 import br.com.fiap.challenge03.exception.DataIntegretyException;
 import br.com.fiap.challenge03.exception.ObjectNotFoundException;
 import br.com.fiap.challenge03.model.Estado;

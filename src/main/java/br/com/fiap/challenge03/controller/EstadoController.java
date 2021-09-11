@@ -1,6 +1,5 @@
 package br.com.fiap.challenge03.controller;
 
-import br.com.fiap.challenge03.dto.EstadoDTO;
 import br.com.fiap.challenge03.model.Estado;
 import br.com.fiap.challenge03.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
