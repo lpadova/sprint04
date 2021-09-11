@@ -53,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario update(Integer id, Usuario usuario) {
-        Optional<Usuario> userOptional = usuarioRepository.findById(id);
+        Optional<Usuario> userOptional = findById(id);
 
         Usuario user = userOptional.get();
 
@@ -66,6 +66,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         return user;
     }
 
+    public Usuario find(Integer id) {
+        Optional<Usuario> obj = usuarioRepository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Usuario não encontrado! Id: " + id +
+                "Tipo: " + Usuario.class.getName()));
+    }
+
+    @Override
     public Usuario fromDTO(UsuarioDTO usuarioDTO) {
         return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(),
                 usuarioDTO.getEmail(), usuarioDTO.getSenha());

@@ -14,7 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -32,11 +31,11 @@ public class UsuarioController {
 
     @PostMapping()
     public ResponseEntity<Usuario> create(@Valid @RequestBody Usuario usuario,
-                                          UriComponentsBuilder componentsBuilder){
+                                          UriComponentsBuilder componentsBuilder) {
         usuarioService.create(usuario);
 
         URI uri = componentsBuilder.
-                path("api/task/{id}")
+                path("api/usuario/{id}")
                 .buildAndExpand(usuario.getId())
                 .toUri();
 
@@ -50,11 +49,11 @@ public class UsuarioController {
 
     @PutMapping("{id}")
     public ResponseEntity<Usuario> update(@PathVariable Integer id,
-                                       @RequestBody @Valid UsuarioDTO userDTO) {
+                                          @RequestBody @Valid UsuarioDTO userDTO) {
 
         Usuario usuario = usuarioService.fromDTO(userDTO);
         usuario.setId(id);
-        usuario = usuarioService.update(id,usuario);
+        usuario = usuarioService.update(id, usuario);
 
         return ResponseEntity.ok(usuario);
     }

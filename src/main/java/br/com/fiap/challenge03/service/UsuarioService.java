@@ -18,4 +18,6 @@ public interface UsuarioService {
     Usuario update(Integer id, Usuario usuario);
 
     Usuario fromDTO(UsuarioDTO usuarioDTO);
+
+    Usuario find(Integer id);
 }

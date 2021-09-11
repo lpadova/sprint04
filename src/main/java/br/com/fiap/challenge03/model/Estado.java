@@ -1,6 +1,6 @@
 package br.com.fiap.challenge03.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,4 +42,13 @@ public class Estado implements Serializable {
 
     @Column(name = "md_temperatura", length = 10)
     private String temperatura;
+
+    public Estado(Integer id, Calendar dataAtualizacao, String temperatura,
+                  String monitoramentoCardiaco, String pressaoArterial) {
+        this.id = id;
+        this.dataAtualizacao = dataAtualizacao;
+        this.temperatura = temperatura;
+        this.monitoramentoCardiaco = monitoramentoCardiaco;
+        this.pressaoArterial = pressaoArterial;
+    }
 }
