@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -42,9 +43,16 @@ public class UsuarioController {
         return ResponseEntity.created(uri).body(usuario);
     }
 
-    @GetMapping(value = "{id}")
-    public ResponseEntity<Usuario> findOne(@PathVariable Integer id) {
-        return ResponseEntity.of(usuarioService.findById(id));
+    @GetMapping()
+    public ResponseEntity<Usuario> findOne(@RequestParam Integer id,
+                                           @RequestParam String cpf) {
+        if (!Optional.ofNullable(id).isPresent()){
+            return ResponseEntity.of(usuarioService.findById(id));
+        }
+
+        return ResponseEntity.ok().body(usuarioService.findByCpf(cpf));
+
+
     }
 
     @PutMapping("{id}")

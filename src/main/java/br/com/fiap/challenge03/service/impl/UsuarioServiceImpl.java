@@ -77,4 +77,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(),
                 usuarioDTO.getEmail(), usuarioDTO.getSenha());
     }
+
+    @Override
+    public Usuario findByCpf(String cpf) {
+
+        return usuarioRepository.findByCpf(cpf);
+    }
 }

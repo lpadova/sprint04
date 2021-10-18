@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -38,6 +39,7 @@ public class Usuario implements Serializable {
     @Size(min = 8, message = "Campo senha deve conter pelo menos 8 Caracteres")
     @NotBlank(message = "Campo senha é obrigatório")
     @Column(name = "ds_senha", nullable = false)
+    @JsonIgnore
     private String senha;
 
     @Temporal(TemporalType.DATE)

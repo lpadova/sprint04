@@ -19,5 +19,5 @@ public interface UsuarioService {
 
     Usuario fromDTO(UsuarioDTO usuarioDTO);
 
-    Usuario find(Integer id);
+    Usuario findByCpf(String cpf);
 }
