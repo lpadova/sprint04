@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.service.impl;
 
+import br.com.fiap.challenge03.dto.EstadoDTO;
 import br.com.fiap.challenge03.exception.DataIntegretyException;
 import br.com.fiap.challenge03.exception.ObjectNotFoundException;
 import br.com.fiap.challenge03.model.Estado;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +54,28 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     public Page<Estado> findAll(Pageable pageable) {
         return estadoRepository.findAll(pageable);
+    }
+
+    @Override
+    public Estado update(Integer id, Estado estado) {
+        Optional<Usuario> user = usuarioRepository.findById(id);
+        Usuario usuario = user.get();
+
+        int ultEst = usuario.getEstados().size();
+
+
+        Estado state = usuario.getEstados().get(ultEst -1);
+
+        state.setDataAtualizacao(Calendar.getInstance());
+        state.setNumeroAtualizacao(state.getNumeroAtualizacao() + 1);
+        state.setTemperatura(estado.getTemperatura());
+
+        return state;
+    }
+
+    @Override
+    public Estado fromDTO(EstadoDTO estadoDTO) {
+        return new Estado(estadoDTO.getTemperatura());
     }
 
 }

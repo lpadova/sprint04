@@ -14,6 +14,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -43,10 +45,10 @@ public class UsuarioController {
         return ResponseEntity.created(uri).body(usuario);
     }
 
-    @GetMapping()
-    public ResponseEntity<Usuario> findOne(@RequestParam Integer id,
-                                           @RequestParam String cpf) {
-        if (!Optional.ofNullable(id).isPresent()){
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Usuario> findOne(@PathVariable Integer id,
+                                           @RequestParam(required = false) String cpf) {
+        if (Optional.ofNullable(id).isPresent()){
             return ResponseEntity.of(usuarioService.findById(id));
         }
 

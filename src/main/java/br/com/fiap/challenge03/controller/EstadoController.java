@@ -1,6 +1,9 @@
 package br.com.fiap.challenge03.controller;
 
+import br.com.fiap.challenge03.dto.EstadoDTO;
+import br.com.fiap.challenge03.dto.UsuarioDTO;
 import br.com.fiap.challenge03.model.Estado;
+import br.com.fiap.challenge03.model.Usuario;
 import br.com.fiap.challenge03.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,5 +49,14 @@ public class EstadoController {
         return estadoService.findAll(pageable);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Estado> update(@PathVariable Integer id,
+                                          @RequestBody EstadoDTO estadoDTO) {
 
+        Estado estado = estadoService.fromDTO(estadoDTO);
+        estado.setId(id);
+        estado = estadoService.update(id, estado);
+
+        return ResponseEntity.ok(estado);
+    }
 }

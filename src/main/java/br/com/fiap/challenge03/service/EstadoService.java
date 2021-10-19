@@ -1,5 +1,6 @@
 package br.com.fiap.challenge03.service;
 
+import br.com.fiap.challenge03.dto.EstadoDTO;
 import br.com.fiap.challenge03.model.Estado;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,5 +15,9 @@ public interface EstadoService {
     Optional<Estado> findById(Integer id);
 
     Page<Estado> findAll(Pageable pageable);
+
+    Estado update(Integer id, Estado estado);
+
+    Estado fromDTO(EstadoDTO estadoDTO);
 
 }

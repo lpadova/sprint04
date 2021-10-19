@@ -57,4 +57,8 @@ public class Estado implements Serializable {
         this.monitoramentoCardiaco = monitoramentoCardiaco;
         this.pressaoArterial = pressaoArterial;
     }
+
+    public Estado(String temperatura) {
+        this.temperatura = temperatura;
+    }
 }
