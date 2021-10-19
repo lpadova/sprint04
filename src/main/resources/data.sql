@@ -44,6 +44,11 @@ INSERT INTO Genero(DS_GENERO,
 VALUES ('Masculino',
         null);
 
+INSERT INTO Genero(DS_GENERO,
+                   ID_USUARIO)
+VALUES ('Masculino',
+        null);
+
 INSERT INTO Usuario(nm_usuario,
                     ds_email,
                     ds_senha,
@@ -54,10 +59,25 @@ INSERT INTO Usuario(nm_usuario,
     VALUES ('Luis',
             'luis@email.com',
             '12345678',
-            '2021-12-22',
+            '1997-12-22',
             NULL,
             '47071670803',
             1);
+
+INSERT INTO Usuario(nm_usuario,
+                    ds_email,
+                    ds_senha,
+                    dt_nascimento,
+                    nr_rg,
+                    nr_cpf,
+                    id_genero)
+VALUES ('Felipe',
+        'felipe@email.com',
+        '12345678',
+        '2002-06-20',
+        NULL,
+        '48668132881',
+        1);
 
 
 INSERT INTO Estado(nr_atualizacao,
@@ -73,6 +93,31 @@ INSERT INTO Estado(nr_atualizacao,
                 '85',
                 '37.2');
 
+INSERT INTO Estado(nr_atualizacao,
+                   id_usuario,
+                   dt_atualizacao,
+                   md_pressao_arterial,
+                   md_monitoramento_cardiaco,
+                   md_temperatura)
+        VALUES (1,
+                2,
+                '2021-10-18',
+                '12/8',
+                '72',
+                '35.7');
+INSERT INTO Estado(nr_atualizacao,
+                   id_usuario,
+                   dt_atualizacao,
+                   md_pressao_arterial,
+                   md_monitoramento_cardiaco,
+                   md_temperatura)
+        VALUES (2,
+                2,
+                '2021-10-18',
+                '12/8',
+                '96',
+                '37.2');
+
 INSERT INTO INFORMACAO_USUARIO(nr_atualizacao,
                               dt_atualizacao,
                               nr_altura,
@@ -86,6 +131,25 @@ INSERT INTO INFORMACAO_USUARIO(nr_atualizacao,
                 0,
                 1);
 
+
+INSERT INTO INFORMACAO_USUARIO(nr_atualizacao,
+                               dt_atualizacao,
+                               nr_altura,
+                               nr_peso,
+                               nr_imc,
+                               id_usuario)
+        VALUES (1,
+                '2021-09-09',
+                1.70,
+                68.0,
+                0,
+                2);
+
+
 UPDATE Genero
-SET id_usuario = (select u.id_usuario from Usuario u where u.id_genero = 1)
+SET id_usuario = 1
 WHERE id_genero = 1;
+
+UPDATE Genero
+SET id_usuario = 2
+WHERE id_genero = 2;
