@@ -34,7 +34,7 @@ public class EstadoServiceImpl implements EstadoService {
         }
 
         for (Estado estado : estados) {
-            Usuario user = usuarioRepository.findByCpf(estado.getUsuario().getCpf());
+            Usuario user = usuarioRepository.findUsuarioByCpf(estado.getUsuario().getCpf());
             if(user == null )
                 throw new ObjectNotFoundException("Usuário não encontrado na base de dados! - Nome: " +
                         estado.getUsuario().getNome() +

@@ -46,15 +46,15 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Usuario> findOne(@PathVariable Integer id,
+    public ResponseEntity<Usuario> findOne(@PathVariable Integer id ,
                                            @RequestParam(required = false) String cpf) {
-        if (Optional.ofNullable(id).isPresent()){
-            return ResponseEntity.of(usuarioService.findById(id));
+
+        if (Optional.ofNullable(cpf).isPresent()
+                && Optional.ofNullable(id).isPresent()) {
+            return ResponseEntity.ok().body(usuarioService.findByCpf(cpf));
         }
 
-        return ResponseEntity.ok().body(usuarioService.findByCpf(cpf));
-
-
+        return ResponseEntity.of(usuarioService.findById(id));
     }
 
     @PutMapping("{id}")

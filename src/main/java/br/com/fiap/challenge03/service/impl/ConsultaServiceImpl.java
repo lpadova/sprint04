@@ -16,7 +16,7 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public ConsultaDTO buscarResumoInformacoes(String cpf) {
-        Usuario usuario = usuarioRepository.findByCpf(cpf);
+        Usuario usuario = usuarioRepository.findUsuarioByCpf(cpf);
         return new ConsultaDTO(usuario);
     }
 }

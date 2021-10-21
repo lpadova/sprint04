@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void create(Usuario usuario) {
         try {
-            Usuario user = usuarioRepository.findByCpf(usuario.getCpf());
+            Usuario user = usuarioRepository.findUsuarioByCpf(usuario.getCpf());
 
             if (user != null)
                 if (usuario.getCpf().equals(user.getCpf())) {
@@ -82,6 +82,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario findByCpf(String cpf) {
 
-        return usuarioRepository.findByCpf(cpf);
+        return usuarioRepository.findUsuarioByCpf(cpf);
     }
 }

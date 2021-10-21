@@ -10,5 +10,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Page<Usuario> findByNomeContains(String nome, Pageable pageable);
 
-    Usuario findByCpf(String cpf);
+    //Usuario findByCpf(String cpf);
+
+    Usuario findUsuarioByCpf(String cpf);
 }

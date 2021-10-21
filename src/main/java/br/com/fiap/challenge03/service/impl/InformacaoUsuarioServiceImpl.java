@@ -65,7 +65,7 @@ public class InformacaoUsuarioServiceImpl implements InformacaoUsuarioService {
             throw new DataIntegretyException("Necessário o preenchimento de todos os campos de Informação de usuários");
 
         for (InformacaoUsuario info : infoUsers) {
-            Usuario usuario = usuarioRepository.findByCpf(info.getUsuario().getCpf());
+            Usuario usuario = usuarioRepository.findUsuarioByCpf(info.getUsuario().getCpf());
 
             if (usuario == null)
                 throw new ObjectNotFoundException("Usuário não encontrado na base de dados! " +
